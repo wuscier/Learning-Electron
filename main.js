@@ -8,6 +8,7 @@ const path = require('path')
 const url = require('url')
 
 const ipc = electron.ipcMain
+const dialog = electron.dialog
 
 ipc.on('synchronous-message', function (event, arg) {
 	event.returnValue = 'I heard you! from Main Process'
@@ -19,6 +20,15 @@ ipc.on('async-msg',function(event,arg){
   }
 })
 
+ipc.on('open-directory-dialog',function(event){
+  dialog.showOpenDialog({
+    properties:['openDirectory']
+  },function(files){
+    if(files) event.sender.send('selectedItem',files)
+  })
+})
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -26,6 +36,10 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
+
+  let handleBuffer  = mainWindow.getNativeWindowHandle();
+  
+   
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

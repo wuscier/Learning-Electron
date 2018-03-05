@@ -21,6 +21,10 @@
  background-color: #ccc;
  box-shadow: 2px 2px 2px #ccc;
  }
+
+ textarea {
+ width: 90%;
+ }
 </style>
 
   </head>
@@ -30,6 +34,10 @@
 
 <button id="sendAsyncMsgBtn">Ping Main Process Asynchronously</button>
 <p id="asyncReply">Awaiting async response</p>
+
+
+<button id="select-directory">choose a directory</button>
+<textarea id="selectedItem"></textarea>
   <script>
 
       // You can also require other files to run in this process
