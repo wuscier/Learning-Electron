@@ -15,5 +15,9 @@ syncMsgBtn.addEventListener('click', function () {
 const asyncMsgBtn = document.getElementById('sendAsyncMsgBtn')
 
 asyncMsgBtn.addEventListener('click', function(){
-	ipc.send('')
+	ipc.send('async-msg','async_test')
+	ipc.on('async-reply',function(event, arg){
+		const message = `asynchronous message reply:${arg}`
+		document.getElementById('asyncReply').innerHTML = message
+	})
 })

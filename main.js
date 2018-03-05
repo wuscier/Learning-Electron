@@ -13,6 +13,12 @@ ipc.on('synchronous-message', function (event, arg) {
 	event.returnValue = 'I heard you! from Main Process'
 })
 
+ipc.on('async-msg',function(event,arg){
+  if(arg === 'async_test'){
+    event.sender.send('async-reply', ', reply from main!!!')
+  }
+})
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -29,7 +35,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-   mainWindow.webContents.openDevTools()
+   //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
