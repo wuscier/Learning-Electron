@@ -31,3 +31,9 @@ selectDirBtn.addEventListener('click', function(event){
 ipc.on('selectedItem', function(event, path){
 	document.getElementById('selectedItem').innerHTML = `you selected:${path}`
 })
+
+const infoDialogBtn = document.getElementById('info');
+
+infoDialogBtn.addEventListener('click', function(event){
+	ipc.send('display-dialog', 'info')
+})

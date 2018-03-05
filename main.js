@@ -28,6 +28,13 @@ ipc.on('open-directory-dialog',function(event){
   })
 })
 
+ipc.on('display-dialog', function(event, dialogType){
+  dialog.showMessageBox({
+    buttons:['ok'],
+    message:'this is a test!'
+  })
+})
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -39,7 +46,10 @@ function createWindow () {
 
   let handleBuffer  = mainWindow.getNativeWindowHandle();
   
-   
+   dialog.showMessageBox({
+      message:handleBuffer.toLocaleString(),
+      buttons:['ok']
+   })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
