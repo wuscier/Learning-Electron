@@ -32,8 +32,13 @@ ipc.on('selectedItem', function(event, path){
 	document.getElementById('selectedItem').innerHTML = `you selected:${path}`
 })
 
-const infoDialogBtn = document.getElementById('info');
+const infoDialogBtn = document.getElementById('info')
 
 infoDialogBtn.addEventListener('click', function(event){
 	ipc.send('display-dialog', 'info')
+})
+
+const callAddonBtn = document.getElementById('test_addon')
+callAddonBtn.addEventListener('click',function(event){
+	ipc.send('call_addon')
 })

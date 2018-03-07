@@ -7,6 +7,7 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const myPlugin = require('node_addon_js')
 
 const ipc = electron.ipcMain
 const dialog = electron.dialog
@@ -34,6 +35,14 @@ ipc.on('display-dialog', function(event, dialogType){
     buttons:['ok'],
     message:'this is a test!'
   })
+})
+
+ipc.on('call_addon', function(event){
+    myPlugin.sleep(2000)
+    dialog.showMessageBox({
+      buttons:['ok'],
+      message:'call addon!!!!'
+    })
 })
 
 
