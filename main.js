@@ -1,3 +1,4 @@
+
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
@@ -46,8 +47,8 @@ function createWindow () {
 
   let handleBuffer  = mainWindow.getNativeWindowHandle();
   
-   dialog.showMessageBox({
-      message:handleBuffer.toLocaleString(),
+     dialog.showMessageBox({
+      message:handleBuffer.toString('hex'),
       buttons:['ok']
    })
 
